@@ -1,5 +1,6 @@
 package org.milaifontanals.mymusicapp;
 
+import android.graphics.Bitmap;
 import android.graphics.Camera;
 import android.util.Log;
 
@@ -24,6 +25,17 @@ public class AlbumCard {
         this.nom_Album = nom_Album;
         this.imageURL = imageURL;
         this.musica = musica;
+    }
+
+    Bitmap bitmap;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+        imageURL = null;
     }
 
     private static ArrayList<AlbumCard> albums;
@@ -72,13 +84,62 @@ public class AlbumCard {
 
         if (albums == null) {
             //omplim d'info els albums
+            //int id, boolean favoritos, String nom, int min, int seg
+
+
             albums = new ArrayList<AlbumCard>();
-            albums.add(new AlbumCard(0, "nomGrup1", "nomAlbum1", "URL IMATGE", null));
-            albums.add(new AlbumCard(1, "nomGrup2", "nomAlbum2", "URL IMATGE", null));
-            albums.add(new AlbumCard(2, "nomGrup3", "nomAlbum3", "URL IMATGE", null));
-            albums.add(new AlbumCard(3, "nomGrup4", "nomAlbum4", "URL IMATGE", null));
-            albums.add(new AlbumCard(4, "nomGrup5", "nomAlbum5", "URL IMATGE", null));
-            albums.add(new AlbumCard(5, "nomGrup6", "nomAlbum6", "URL IMATGE", null));
+
+            //albums.add(new AlbumCard(0, "Pink Floyd", "The Dark Side of the Moon", "https://www.rockcamp.es/blog/wp-content/uploads/2017/02/Pink-Floyd-Dark-Side-of-The-Moon.jpg", canciones));
+            albums.add(new AlbumCard(0,
+                    "Pink Floyd",
+                    "The Dark Side of the Moon",
+                    "https://www.rockcamp.es/blog/wp-content/uploads/2017/02/Pink-Floyd-Dark-Side-of-The-Moon.jpg",
+                    new ArrayList<CancionInfo>() {
+                        {
+                            add(new CancionInfo(0, false, "Speak to Me", 1, 7));
+                            add(new CancionInfo(1, true, "Breathe", 2, 49));
+                            add(new CancionInfo(2, false, "On the Run", 3, 45));
+                            add(new CancionInfo(3, false, "Time", 6, 53));
+                            add(new CancionInfo(4, true, "The Great Gig in the Sky", 4, 44));
+                            add(new CancionInfo(5, true, "Money", 6, 23));
+                            add(new CancionInfo(6, false, "Us and Them", 7, 49));
+                            add(new CancionInfo(7, false, "Any Colour You Like", 3, 26));
+                            add(new CancionInfo(8, false, "Brain Damage", 3, 46));
+                            add(new CancionInfo(9, true, "Eclipse", 2, 12));
+                        }}));
+
+
+            albums.add(new AlbumCard(1,
+                    "Joji",
+                    "Nectar ",
+                    "https://m.media-amazon.com/images/I/81VWPK3PIKL._UF894,1000_QL80_.jpg",
+                    new ArrayList<CancionInfo>(){
+                        {
+                            add(new CancionInfo(0, false, "Ew", 3, 27));
+                            add(new CancionInfo(1, false, "Modus", 3, 27));
+                            add(new CancionInfo(2, true, "Tick Tock", 2, 12));
+                            add(new CancionInfo(3, false, "Daylight (ft. Diplo)", 2, 43));
+                            add(new CancionInfo(4, false, "Upgrade", 1, 29));
+                            add(new CancionInfo(5, true, "Gimme Love", 3, 34));
+                            add(new CancionInfo(6, true, "Run", 3, 15));
+                            add(new CancionInfo(7, false, "Sanctuary", 3, 0));
+                            add(new CancionInfo(8, false, "High Hopes (ft. Omar Apollo)", 3, 2));
+                            add(new CancionInfo(9, false, "Nitrous", 2, 11));
+                            add(new CancionInfo(10, true, "Pretty Boy (ft. Lil Yachty)", 2, 36));
+                            add(new CancionInfo(11, true, "Normal People (ft. Rei Brown)", 2, 46));
+                            add(new CancionInfo(12, true, "Afterthought (Con Benee)", 3, 14));
+                            add(new CancionInfo(13, false, "Mr. Hollywood", 3, 22));
+                            add(new CancionInfo(14, false, "777", 3, 1));
+                            add(new CancionInfo(15, false, "Reanimator (ft. Yves Tumor)", 3, 3));
+                            add(new CancionInfo(16, true, "Like You Do", 4, 0));
+                            add(new CancionInfo(17, false, "Your Man", 2, 43));
+                        }
+                    }));
+            albums.add(new AlbumCard(2, "nomGrup3", "nomAlbum3", "", null));
+            albums.add(new AlbumCard(3, "nomGrup4", "nomAlbum4", "", null));
+            albums.add(new AlbumCard(4, "nomGrup5", "nomAlbum5", "", null));
+            albums.add(new AlbumCard(5, "nomGrup6", "nomAlbum6", "", null));
+            albums.add(new AlbumCard(6, "nomGrup7", "nomAlbum6", "", null));
         }
         return albums;
     }

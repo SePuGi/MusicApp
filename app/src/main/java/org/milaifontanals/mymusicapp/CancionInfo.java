@@ -55,4 +55,15 @@ public class CancionInfo {
     public void setSeg(int seg) {
         this.seg = seg;
     }
+
+    @Override
+    public String toString() {
+        return "CancionInfo{" +
+                "id=" + id +
+                ", favoritos=" + favoritos +
+                ", nom='" + nom + '\'' +
+                ", min=" + min +
+                ", seg=" + seg +
+                '}';
+    }
 }

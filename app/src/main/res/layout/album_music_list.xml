@@ -2,11 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MusicList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="@color/white">
-
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -17,17 +16,29 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="My Music"
+        app:title="Track List"
         />
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcyFitxes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/rcyMusic"
+        android:layout_width="392dp"
+        android:layout_height="651dp"
         android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toTopOf="@+id/textNoMusica"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        tools:layout_editor_absoluteX="0dp"/>
+        app:layout_constraintVertical_bias="0.0" />
 
-
+    <TextView
+        android:id="@+id/textNoMusica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

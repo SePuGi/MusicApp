@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clMusicList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_music_list"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/txvId"
+        android:layout_width="23dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="4dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="@color/grey_word"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imvFavoritos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imvFavoritos"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <ImageView
+        android:id="@+id/imvFavoritos"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/cora_n"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txvNom"
+        app:layout_constraintEnd_toStartOf="@+id/txvNom"
+        app:layout_constraintHorizontal_bias="0.302"
+        app:layout_constraintStart_toEndOf="@+id/txvId"
+        app:layout_constraintTop_toTopOf="@+id/txvNom"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txvNom"
+        android:layout_width="268dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="8dp"
+        android:text="Lucid Dreams"
+        android:textColor="@color/black"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txvTemps"
+        app:layout_constraintEnd_toStartOf="@+id/txvTemps"
+        app:layout_constraintTop_toTopOf="@+id/txvTemps" />
+
+    <TextView
+        android:id="@+id/txvTemps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="2:30"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

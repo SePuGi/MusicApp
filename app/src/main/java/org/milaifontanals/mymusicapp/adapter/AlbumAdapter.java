@@ -1,5 +1,7 @@
 package org.milaifontanals.mymusicapp.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import org.milaifontanals.mymusicapp.AlbumCard;
+import org.milaifontanals.mymusicapp.MusicList;
 import org.milaifontanals.mymusicapp.R;
 
 import java.util.List;
@@ -19,9 +24,10 @@ import java.util.List;
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
 
     List<AlbumCard> lAlbums;
+    Context c;
 
-    public AlbumAdapter(List<AlbumCard> albums) {
-
+    public AlbumAdapter(Context c, List<AlbumCard> albums) {
+        this.c = c;
         this.lAlbums = albums;
 
     }
@@ -30,7 +36,6 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
     @Override
     public AlbumAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View ficha = LayoutInflater.from(parent.getContext()).inflate(R.layout.ficha,parent,false);
-        Log.d("ALBUM_NOM_GRUP", "onCreateViewHolder (AlbumAdapter) ");
         return new ViewHolder(ficha);
     }
 
@@ -39,7 +44,26 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
         AlbumCard album = lAlbums.get(position);
         holder.txvNomGrup.setText(album.getNom_Grup() + "");
         holder.txvAlbum.setText(album.getNom_Album() + "");
-        Log.d("ALBUM_NOM_GRUP", "Albums(AlbumAdapter) " + position + "\n" + album.getNom_Grup() + "");
+
+        holder.bttFicha.setOnClickListener(view -> {
+            //Log.d("ALBUM_NOM_GRUP", "Albums(AlbumAdapter) " + album.getImageURL());
+            try {
+                Intent i = new Intent(c, MusicList.class);
+                i.putExtra("idAlbum",album.getId());
+                Log.d("ALBUM_NOM_GRUP","(AlbumAdapter) ID enviat --> "+ album.getId());
+                c.startActivity(i);
+            }catch (Exception e){
+                Log.d("ALBUM_NOM_GRUP","Creació MusicList: "+ e.getMessage());
+            }
+        });
+
+        ImageLoader il = ImageLoader.getInstance();
+        if(!album.getImageURL().equals("")){
+            il.displayImage(album.getImageURL(), holder.imvFicha);
+        }
+
+
+
     }
 
     @Override
