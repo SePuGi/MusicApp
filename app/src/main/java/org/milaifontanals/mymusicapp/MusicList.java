@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -36,6 +38,9 @@ public class MusicList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.album_music_list);
 
+        Toolbar tb = findViewById(R.id.bot_toolbar_music_list);
+
+
         Intent i = getIntent();
         TextView textNoMusica = findViewById(R.id.textNoMusica);
         //String nomAlbum = i.getStringExtra("valor");
@@ -44,11 +49,28 @@ public class MusicList extends AppCompatActivity {
 
         Log.d("ALBUM_NOM_GRUP","(MusicList) ID rebut --> "+ idAlbum);
 
-
         //botó enrere en la finestra nova
         setSupportActionBar(findViewById(R.id.my_toolbar));
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Toolbar Inferior
+
+
+        try {
+            ImageButton editButton = findViewById(R.id.bttEditar);
+            editButton.setOnClickListener(view -> {
+                Log.d("ALBUM_NOM_GRUP", "(MusicList) editButton");
+            });
+
+            ImageButton deleteButton = findViewById(R.id.bttEliminar);
+            editButton.setOnClickListener(view -> {
+                Log.d("ALBUM_NOM_GRUP", "(MusicList) deleteButton");
+            });
+        }catch (Exception e) {
+            Log.d("ALBUM_NOM_GRUP", "(MusicList) ERROR CLICKLISTENER: " + e.getMessage());
+        }
+
         if(idAlbum != -1){
             for (int idx=0;idx < albums.size();idx++ ){
                 if(idAlbum == albums.get(idx).getId()){
@@ -64,7 +86,7 @@ public class MusicList extends AppCompatActivity {
                     RecyclerView rcyAlbum = findViewById(R.id.rcyMusic);
                     rcyAlbum.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                     rcyAlbum.setHasFixedSize(true);
-                    adapter = new MusicAdapter(this, music);
+                    adapter = new MusicAdapter(this, music, tb);
                     rcyAlbum.setAdapter(adapter);
 
                     Log.d("ALBUM_NOM_GRUP", "MusicList (RecyclerView): \nMusic:" + music.toString());
@@ -76,14 +98,11 @@ public class MusicList extends AppCompatActivity {
         }else{
             textNoMusica.setText("No s'han trobat dades");
         }
-
-
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // Realiza la acción deseada cuando se presiona el botón de retroceso
             onBackPressed();
             return true;
         }

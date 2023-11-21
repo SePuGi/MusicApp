@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,16 +25,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setupUniversalImageLoader();
+        try {
+            Toolbar tb = findViewById(R.id.bot_toolbar);
 
-        RecyclerView rcyAlbum = findViewById(R.id.rcyFitxes);
+            setupUniversalImageLoader();
+            RecyclerView rcyAlbum = findViewById(R.id.rcyFitxes);
+            rcyAlbum.setLayoutManager(new GridLayoutManager(this, 2));
+            rcyAlbum.setHasFixedSize(true);
+            adapter = new AlbumAdapter(this, AlbumCard.getAlbums(), tb);
+            rcyAlbum.setAdapter(adapter);
 
-        rcyAlbum.setLayoutManager(new GridLayoutManager(this, 2));
-
-        rcyAlbum.setHasFixedSize(true);
-
-        adapter = new AlbumAdapter(this,AlbumCard.getAlbums());
-        rcyAlbum.setAdapter(adapter);
+        } catch (Exception e) {
+            Log.d("ALBUM_NOM_GRUP", "(MainActivity) Error Toolbar --> " + e.getMessage());
+        }
     }
 
     private void setupUniversalImageLoader() {

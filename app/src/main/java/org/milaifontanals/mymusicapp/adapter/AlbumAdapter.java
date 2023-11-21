@@ -7,35 +7,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.milaifontanals.mymusicapp.AlbumCard;
+import org.milaifontanals.mymusicapp.EditActivity;
 import org.milaifontanals.mymusicapp.MusicList;
 import org.milaifontanals.mymusicapp.R;
 
 import java.util.List;
 
-public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
+public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> {
 
     List<AlbumCard> lAlbums;
     Context c;
+    Toolbar tb;
 
-    public AlbumAdapter(Context c, List<AlbumCard> albums) {
+    public AlbumAdapter(Context c, List<AlbumCard> albums, Toolbar tb) {
         this.c = c;
         this.lAlbums = albums;
-
+        this.tb = tb;
     }
 
     @NonNull
     @Override
     public AlbumAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View ficha = LayoutInflater.from(parent.getContext()).inflate(R.layout.ficha,parent,false);
+        View ficha = LayoutInflater.from(parent.getContext()).inflate(R.layout.ficha, parent, false);
         return new ViewHolder(ficha);
     }
 
@@ -45,23 +49,43 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
         holder.txvNomGrup.setText(album.getNom_Grup() + "");
         holder.txvAlbum.setText(album.getNom_Album() + "");
 
-        holder.bttFicha.setOnClickListener(view -> {
-            //Log.d("ALBUM_NOM_GRUP", "Albums(AlbumAdapter) " + album.getImageURL());
+        holder.bttFicha.setOnLongClickListener(view -> {
+            tb.setVisibility(View.VISIBLE);
+            Log.d("ALBUM_NOM_GRUP", "(setOnLongClickListener) ");
             try {
-                Intent i = new Intent(c, MusicList.class);
-                i.putExtra("idAlbum",album.getId());
-                Log.d("ALBUM_NOM_GRUP","(AlbumAdapter) ID enviat --> "+ album.getId());
-                c.startActivity(i);
-            }catch (Exception e){
-                Log.d("ALBUM_NOM_GRUP","Creació MusicList: "+ e.getMessage());
+                ImageButton imbEdit = tb.findViewById(R.id.bttEditar);
+                imbEdit.setOnClickListener(view1 -> {
+                    Intent i = new Intent(c, EditActivity.class);
+                    i.putExtra("idAlbum", album.getId());
+                    c.startActivity(i);
+                    tb.setVisibility(View.INVISIBLE);
+                });
+
+            } catch (Exception e) {
+                Log.d("ALBUM_NOM_GRUP", "(ImageButton) ERROR: " + e.getMessage());
             }
+            return true;
         });
 
+        holder.bttFicha.setOnClickListener(view -> {
+            Log.d("ALBUM_NOM_GRUP", "(setOnClickListener) ");
+            try {
+                Intent i = new Intent(c, MusicList.class);
+                i.putExtra("idAlbum", album.getId());
+                Log.d("ALBUM_NOM_GRUP", "(AlbumAdapter) ID enviat --> " + album.getId());
+
+                c.startActivity(i);
+            } catch (Exception e) {
+                Log.d("ALBUM_NOM_GRUP", "Creació MusicList: " + e.getMessage());
+            }
+
+        });
+
+
         ImageLoader il = ImageLoader.getInstance();
-        if(!album.getImageURL().equals("")){
+        if (!album.getImageURL().equals("")) {
             il.displayImage(album.getImageURL(), holder.imvFicha);
         }
-
 
 
     }
@@ -77,6 +101,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
         TextView txvAlbum;
         ImageView imvFicha;
         Button bttFicha;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txvNomGrup = itemView.findViewById(R.id.txvNomGrup);

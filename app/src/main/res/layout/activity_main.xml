@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".MainActivity">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -17,8 +17,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="My Music"
-        />
+        app:title="My Music" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,8 +25,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toTopOf="@+id/bot_toolbar"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        tools:layout_editor_absoluteX="0dp"/>
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bot_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/base_bottom"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <ImageButton
+            android:id="@+id/bttEditar"
+            style="?attr/actionButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"/>
+
+        <ImageButton
+            android:id="@+id/bttEliminar"
+            style="?attr/actionButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/outline_clear_24"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

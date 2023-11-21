@@ -22,15 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MusicList"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="org.milaifontanals.mymusicapp.MusicList" />
+        <activity android:name="org.milaifontanals.mymusicapp.EditActivity" />
     </application>
 
 </manifest>

@@ -5,7 +5,8 @@
     <color name="grey">#999999</color>
     <color name="grey_word">#494949</color>
 
-    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent">#00FBF9CD</color>
 
     <color name="base">#E91E63</color>
+    <color name="base_bottom">#EF97B5</color>
 </resources>

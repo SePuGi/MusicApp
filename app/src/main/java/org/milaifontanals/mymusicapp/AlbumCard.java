@@ -5,6 +5,7 @@ import android.graphics.Camera;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AlbumCard {
@@ -13,6 +14,8 @@ public class AlbumCard {
     String nom_Grup;
     String nom_Album;
     String imageURL;
+
+    Date data;
     List<CancionInfo> musica;
 
     public AlbumCard() {
@@ -142,5 +145,10 @@ public class AlbumCard {
             albums.add(new AlbumCard(6, "nomGrup7", "nomAlbum6", "", null));
         }
         return albums;
+    }
+
+    public static AlbumCard getAlbums(int i){
+
+        return albums.get(i);
     }
 }
