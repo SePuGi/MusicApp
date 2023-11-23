@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -40,12 +41,15 @@ public class MusicList extends AppCompatActivity {
 
         Toolbar tb = findViewById(R.id.bot_toolbar_music_list);
 
+        FloatingActionButton fabAlbum = findViewById(R.id.floatingBtnAlbum);
+        fabAlbum.setOnClickListener(view -> {
+            Log.d("ALBUM_NOM_GRUP", "(MusicList) FloatingActionButton");
+        });
 
         Intent i = getIntent();
         TextView textNoMusica = findViewById(R.id.textNoMusica);
-        //String nomAlbum = i.getStringExtra("valor");
+        
         int idAlbum = i.getIntExtra("idAlbum", -1);
-        albums = AlbumCard.getAlbums();
 
         Log.d("ALBUM_NOM_GRUP","(MusicList) ID rebut --> "+ idAlbum);
 
@@ -58,13 +62,13 @@ public class MusicList extends AppCompatActivity {
 
 
         try {
-            ImageButton editButton = findViewById(R.id.bttEditar);
+            ImageButton editButton = findViewById(R.id.bttEditar_album);
             editButton.setOnClickListener(view -> {
                 Log.d("ALBUM_NOM_GRUP", "(MusicList) editButton");
             });
 
-            ImageButton deleteButton = findViewById(R.id.bttEliminar);
-            editButton.setOnClickListener(view -> {
+            ImageButton deleteButton = findViewById(R.id.bttEliminar_album);
+            deleteButton.setOnClickListener(view -> {
                 Log.d("ALBUM_NOM_GRUP", "(MusicList) deleteButton");
             });
         }catch (Exception e) {
@@ -72,12 +76,7 @@ public class MusicList extends AppCompatActivity {
         }
 
         if(idAlbum != -1){
-            for (int idx=0;idx < albums.size();idx++ ){
-                if(idAlbum == albums.get(idx).getId()){
-                    music = albums.get(idx).getMusica();
-                    break;
-                }
-            }
+            music = AlbumCard.getAlbums(idAlbum).getMusica();
             if(music == null){
                 textNoMusica.setText("No s'han trobat dades");
             }else {

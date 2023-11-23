@@ -2,9 +2,17 @@ package org.milaifontanals.mymusicapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +42,26 @@ public class EditActivity extends AppCompatActivity {
 
         ImageView ivAlbum = findViewById(R.id.imgAlbumEditar);
         EditText txvNomAlbum = findViewById(R.id.txtNomAlbumEditar);
+        TextView txvDataEditar = findViewById(R.id.txvDataEditar);
+        Button bttDatePickerEditar = findViewById(R.id.bttDatePickerEditar);
+        bttDatePickerEditar.setOnClickListener(view -> {
+            LinearLayout lyEdit = findViewById(R.id.linearLayoutEditar);
+            DatePicker dp = findViewById(R.id.datePicker_edit);
+
+            lyEdit.setVisibility(View.VISIBLE);
+            lyEdit.setOnClickListener(view1 -> {
+                lyEdit.setVisibility(View.INVISIBLE);
+                dp.setVisibility(View.INVISIBLE);
+
+            });
+
+            dp.setVisibility(View.VISIBLE);
+            dp.setOnContextClickListener(view1 -> {
+                Log.d("ALBUM_NOM_GRUP", "EditActivity: setOnContextClickListener");
+                return true;
+            });
+            Log.d("ALBUM_NOM_GRUP", "EditActivity: Mostrar DatePicker");
+        });
 
 
         //Cargar Imatge Album
@@ -50,6 +78,8 @@ public class EditActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
+            //guardar noves dades
+            Log.d("ALBUM_NOM_GRUP", "EditActivity: ENRERE");
             return true;
         }
         return super.onOptionsItemSelected(item);

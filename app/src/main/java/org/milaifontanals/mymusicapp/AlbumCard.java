@@ -22,11 +22,12 @@ public class AlbumCard {
 
     }
 
-    public AlbumCard(int id, String nom_Grup, String nom_Album, String imageURL, List<CancionInfo> musica) {
+    public AlbumCard(int id, String nom_Grup, String nom_Album, String imageURL,Date data, List<CancionInfo> musica) {
         this.id = id;
         this.nom_Grup = nom_Grup;
         this.nom_Album = nom_Album;
         this.imageURL = imageURL;
+        this.data = data;
         this.musica = musica;
     }
 
@@ -96,7 +97,7 @@ public class AlbumCard {
             albums.add(new AlbumCard(0,
                     "Pink Floyd",
                     "The Dark Side of the Moon",
-                    "https://www.rockcamp.es/blog/wp-content/uploads/2017/02/Pink-Floyd-Dark-Side-of-The-Moon.jpg",
+                    "https://www.rockcamp.es/blog/wp-content/uploads/2017/02/Pink-Floyd-Dark-Side-of-The-Moon.jpg", new Date(System.currentTimeMillis()),
                     new ArrayList<CancionInfo>() {
                         {
                             add(new CancionInfo(0, false, "Speak to Me", 1, 7));
@@ -115,7 +116,7 @@ public class AlbumCard {
             albums.add(new AlbumCard(1,
                     "Joji",
                     "Nectar ",
-                    "https://m.media-amazon.com/images/I/81VWPK3PIKL._UF894,1000_QL80_.jpg",
+                    "https://m.media-amazon.com/images/I/81VWPK3PIKL._UF894,1000_QL80_.jpg", new Date(System.currentTimeMillis()),
                     new ArrayList<CancionInfo>(){
                         {
                             add(new CancionInfo(0, false, "Ew", 3, 27));
@@ -138,11 +139,11 @@ public class AlbumCard {
                             add(new CancionInfo(17, false, "Your Man", 2, 43));
                         }
                     }));
-            albums.add(new AlbumCard(2, "nomGrup3", "nomAlbum3", "", null));
-            albums.add(new AlbumCard(3, "nomGrup4", "nomAlbum4", "", null));
-            albums.add(new AlbumCard(4, "nomGrup5", "nomAlbum5", "", null));
-            albums.add(new AlbumCard(5, "nomGrup6", "nomAlbum6", "", null));
-            albums.add(new AlbumCard(6, "nomGrup7", "nomAlbum6", "", null));
+            albums.add(new AlbumCard(2, "nomGrup3", "nomAlbum3", "",new Date(System.currentTimeMillis()), null));
+            albums.add(new AlbumCard(3, "nomGrup4", "nomAlbum4", "",new Date(System.currentTimeMillis()), null));
+            albums.add(new AlbumCard(4, "nomGrup5", "nomAlbum5", "",new Date(System.currentTimeMillis()), null));
+            albums.add(new AlbumCard(5, "nomGrup6", "nomAlbum6", "",new Date(System.currentTimeMillis()), null));
+            albums.add(new AlbumCard(6, "nomGrup7", "nomAlbum6", "",new Date(System.currentTimeMillis()), null));
         }
         return albums;
     }
